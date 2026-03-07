@@ -37,4 +37,10 @@ interface ExpenseDao {
 
     @Query("SELECT * FROM expenseItems WHERE id = :id")
     suspend fun getExpenseItemById(id: Int): ExpenseItemEntity?
+
+    @Query("SELECT COUNT(*) FROM expenseItems")
+    fun getCount(): Flow<Int>
+
+    @Query("SELECT DISTINCT category FROM expenseItems")
+    fun getCategories(): Flow<List<String>>
 }

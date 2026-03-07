@@ -25,15 +25,12 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -57,22 +54,22 @@ fun FinanceApp(appViewModel: AppViewModel) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
-
     val topBarLocations = listOf(
         "homeScreen",
         "settingsScreen"
     )
 
     Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = Modifier.fillMaxSize()
     ) { innerPadding ->
         Box(modifier = Modifier.fillMaxSize()) {
             NavHost(
                 navController = navController,
                 startDestination = "homeScreen",
-                // We keep top padding for the top bar but ignore bottom padding
-                modifier = Modifier.padding(top = innerPadding.calculateTopPadding()),
+                // Pass the innerPadding to the screens or use it in the modifier
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = innerPadding.calculateTopPadding()),
                 enterTransition = {
                     fadeIn(animationSpec = tween(220, delayMillis = 90)) +
                             scaleIn(
@@ -81,16 +78,6 @@ fun FinanceApp(appViewModel: AppViewModel) {
                             )
                 },
                 exitTransition = {
-                    fadeOut(animationSpec = tween(90))
-                },
-                popEnterTransition = {
-                    fadeIn(animationSpec = tween(220, delayMillis = 90)) +
-                            scaleIn(
-                                initialScale = 0.92f,
-                                animationSpec = tween(220, delayMillis = 90)
-                            )
-                },
-                popExitTransition = {
                     fadeOut(animationSpec = tween(90))
                 }
             ) {
@@ -116,7 +103,7 @@ fun FinanceApp(appViewModel: AppViewModel) {
                 composable("expenseTypeSelector") {
                     ExpenseTypeSelector(
                         navController = navController,
-                        appViewModel = appViewModel
+                        viewModel = appViewModel
                     )
                 }
             }
@@ -140,16 +127,15 @@ fun FloatingNavigationBar(
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
-    val context = LocalContext.current
 
     Surface(
         shape = CircleShape,
-        color = MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.94f), // Glassy transparency
+        color = MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.95f),
         tonalElevation = 12.dp,
         shadowElevation = 8.dp,
         border = BorderStroke(
             width = 0.5.dp,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f) // Subtle glassy edge
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)
         ),
         modifier = modifier
             .padding(bottom = 30.dp)

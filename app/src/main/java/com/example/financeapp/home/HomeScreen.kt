@@ -1,5 +1,6 @@
 package com.example.financeapp.home
 
+import android.R
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -99,8 +100,6 @@ fun HomeScreen(
     val total by appViewModel.totalExpense.collectAsState()
     val recentExpenses by appViewModel.recentExpenses.collectAsState()
 
-
-
     Scaffold(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         floatingActionButton = {
@@ -135,7 +134,8 @@ fun HomeScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            contentPadding = PaddingValues(bottom = 120.dp) // Scroll fix
         ) {
 
             item {
@@ -253,6 +253,30 @@ fun HomeScreen(
                     icon = Icons.Rounded.Payment,
                 ) {}
             }
+            item {
+                WideSquareCard(
+                    label = "Add Points",
+                    icon = Icons.Rounded.Payment,
+                ) {}
+            }
+            item {
+                WideSquareCard(
+                    label = "Add Points",
+                    icon = Icons.Rounded.Payment,
+                ) {}
+            }
+            item {
+                WideSquareCard(
+                    label = "Add Points",
+                    icon = Icons.Rounded.Payment,
+                ) {}
+            }
+            item {
+                WideSquareCard(
+                    label = "Add Points",
+                    icon = Icons.Rounded.Payment,
+                ) {}
+            }
         }
     }
 }
@@ -350,6 +374,12 @@ fun KeyboardScreen(
                     CustomKeyboardButton(modifier = Modifier.weight(1f), symbol = "1", onClick = { input += "1" })
                     CustomKeyboardButton(modifier = Modifier.weight(1f), symbol = "2", onClick = { input += "2" })
                     CustomKeyboardButton(modifier = Modifier.weight(1f), symbol = "3", onClick = { input += "3" })
+                }
+                Row(
+                   modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    CustomKeyboardButton(modifier = Modifier.size(100.dp), symbol = "0", onClick = { input += "0" })
                 }
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -520,7 +550,7 @@ fun CustomKeyboardButton(
         if (symbol != null) {
             Text(
                 text = symbol,
-                style = MaterialTheme.typography.headlineSmall,
+                style = MaterialTheme.typography.displaySmall,
                 fontWeight = FontWeight.Medium,
                 color = contentColor
             )

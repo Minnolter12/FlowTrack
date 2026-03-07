@@ -11,6 +11,10 @@ class ExpenseRepository(
     val totalExpense: Flow<Int?> = dao.getTotalExpense()
     val recentExpenses: Flow<List<ExpenseEntity>> = dao.getRecentExpenses()
 
+    val getCategories: Flow<List<String>> = dao.getCategories()
+
+    val getCount: Flow<Int> = dao.getCount()
+
     suspend fun insert(expense: ExpenseEntity) {
         dao.insertExpense(expense)
     }
@@ -35,3 +39,4 @@ class ExpenseRepository(
         return dao.getExpenseItemById(id)
     }
 }
+

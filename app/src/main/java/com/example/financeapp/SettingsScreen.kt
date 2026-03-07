@@ -1,10 +1,10 @@
-
 package com.example.financeapp
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -44,7 +44,10 @@ fun SettingsScreen(
         "Dark Theme"
     }
 
-    LazyColumn(contentPadding = PaddingValues(vertical = 16.dp)) {
+    LazyColumn(
+        modifier = Modifier.fillMaxSize(), // Added to enable scrolling
+        contentPadding = PaddingValues(top = 16.dp, bottom = 100.dp) // Fixed: Use top and bottom separately
+    ) {
         item {
             Row(
                 modifier = Modifier
@@ -81,39 +84,37 @@ fun SettingsScreen(
             HorizontalDivider(modifier = Modifier.padding(horizontal = 24.dp))
         }
 
-        item {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(72.dp)
-                    .padding(horizontal = 24.dp)
-                    .clickable(
-                        onClick = {
-                            TODO()
-                        }
-                    ),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = "Date",
-                    style = MaterialTheme.typography.bodyLarge
-                )
-                Spacer(Modifier.weight(1f))
+        // Using repeat to ensure there is enough content to scroll
+        repeat(20) { index ->
+            item {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(72.dp)
+                        .clickable(onClick = { /* TODO */ })
+                        .padding(horizontal = 24.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "Setting Item ${index + 1}",
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+                    Spacer(Modifier.weight(1f))
 
-                val currentDate = LocalDateTime.now()
-                val formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
-                val formattedDate = currentDate.format(formatter)
+                    val currentDate = LocalDateTime.now()
+                    val formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
+                    val formattedDate = currentDate.format(formatter)
 
-                Text(
-                    text = formattedDate,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
+                    Text(
+                        text = formattedDate,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
             }
-        }
-
-        item {
-            HorizontalDivider(modifier = Modifier.padding(horizontal = 24.dp))
+            item {
+                HorizontalDivider(modifier = Modifier.padding(horizontal = 24.dp))
+            }
         }
     }
 }
