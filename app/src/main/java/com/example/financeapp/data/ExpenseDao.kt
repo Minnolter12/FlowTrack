@@ -6,6 +6,8 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ExpenseDao {
 
+    // --- ExpenseEntity Operations ---
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertExpense(expense: ExpenseEntity)
 
@@ -20,4 +22,19 @@ interface ExpenseDao {
 
     @Query("SELECT * FROM expenses ORDER BY timestamp DESC LIMIT 5")
     fun getRecentExpenses(): Flow<List<ExpenseEntity>>
+
+
+    // --- ExpenseItemEntity Operations ---
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertExpenseItem(item: ExpenseItemEntity)
+
+    @Delete
+    suspend fun deleteExpenseItem(item: ExpenseItemEntity)
+
+    @Query("SELECT * FROM expenseItems ORDER BY title ASC")
+    fun getAllExpenseItems(): Flow<List<ExpenseItemEntity>>
+
+    @Query("SELECT * FROM expenseItems WHERE id = :id")
+    suspend fun getExpenseItemById(id: Int): ExpenseItemEntity?
 }

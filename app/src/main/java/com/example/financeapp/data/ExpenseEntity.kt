@@ -13,3 +13,13 @@ data class ExpenseEntity(
     val amount: Int,
     val timestamp: Long = System.currentTimeMillis()
 )
+
+@Entity(tableName = "expenseItems")
+data class ExpenseItemEntity(
+
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val title: String,
+    val category: String,
+    val timestamp: Long = System.currentTimeMillis()
+)
