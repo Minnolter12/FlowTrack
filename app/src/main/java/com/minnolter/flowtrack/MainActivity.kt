@@ -1,4 +1,4 @@
-package com.example.financeapp
+package com.minnolter.flowtrack
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,10 +7,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.financeapp.data.AppDatabase
-import com.example.financeapp.data.ExpenseRepository
-import com.example.financeapp.data.UserPreferencesRepository
 import com.example.financeapp.ui.theme.FinanceAppTheme
+import com.minnolter.flowtrack.app.AppViewModel
+import com.minnolter.flowtrack.app.AppViewModelFactory
+import com.minnolter.flowtrack.data.AppDatabase
+import com.minnolter.flowtrack.data.ExpenseRepository
+import com.minnolter.flowtrack.data.UserPreferencesRepository
 
 class MainActivity : ComponentActivity() {
 

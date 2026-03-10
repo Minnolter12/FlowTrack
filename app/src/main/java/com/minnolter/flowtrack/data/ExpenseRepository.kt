@@ -1,4 +1,4 @@
-package com.example.financeapp.data
+package com.minnolter.flowtrack.data
 
 import kotlinx.coroutines.flow.Flow
 

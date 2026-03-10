@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinanceApp">
         <activity
-            android:name=".MainActivity"
+            android:name="com.minnolter.flowtrack.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.FinanceApp">

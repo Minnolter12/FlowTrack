@@ -1,9 +1,9 @@
-package com.example.financeapp
+package com.minnolter.flowtrack.app
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.financeapp.data.ExpenseRepository
-import com.example.financeapp.data.UserPreferencesRepository
+import com.minnolter.flowtrack.data.ExpenseRepository
+import com.minnolter.flowtrack.data.UserPreferencesRepository
 
 class AppViewModelFactory(
     private val repository: ExpenseRepository,

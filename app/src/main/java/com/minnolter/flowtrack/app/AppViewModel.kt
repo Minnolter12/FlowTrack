@@ -1,11 +1,11 @@
-package com.example.financeapp
+package com.minnolter.flowtrack.app
 
-import com.example.financeapp.data.ExpenseEntity
-import com.example.financeapp.data.ExpenseRepository
-import com.example.financeapp.data.UserPreferencesRepository
+import com.minnolter.flowtrack.data.ExpenseEntity
+import com.minnolter.flowtrack.data.ExpenseRepository
+import com.minnolter.flowtrack.data.UserPreferencesRepository
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.financeapp.data.ExpenseItemEntity
+import com.minnolter.flowtrack.data.ExpenseItemEntity
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map

@@ -1,4 +1,4 @@
-package com.example.financeapp
+package com.minnolter.flowtrack
 
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -39,10 +39,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.financeapp.home.ExpenseTypeSelector
-import com.example.financeapp.home.HomeScreen
-import com.example.financeapp.home.HomeScreenViewModel
-import com.example.financeapp.home.KeyboardScreen
+import com.minnolter.flowtrack.home.ExpenseTypeSelector
+import com.minnolter.flowtrack.home.HomeScreenViewModel
+import com.minnolter.flowtrack.app.AppViewModel
+import com.minnolter.flowtrack.home.HomeScreen
+import com.minnolter.flowtrack.home.KeyboardScreen
+import com.minnolter.flowtrack.settings.SettingsScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

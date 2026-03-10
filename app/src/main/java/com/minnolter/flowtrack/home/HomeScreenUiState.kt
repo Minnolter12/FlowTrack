@@ -1,4 +1,4 @@
-package com.example.financeapp.home
+package com.minnolter.flowtrack.home
 
 sealed class HomeScreenUiState {
     data class Result(

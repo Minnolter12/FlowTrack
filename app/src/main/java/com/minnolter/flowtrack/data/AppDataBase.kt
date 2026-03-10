@@ -1,4 +1,4 @@
-package com.example.financeapp.data
+package com.minnolter.flowtrack.data
 
 import android.content.Context
 import androidx.room.Database
