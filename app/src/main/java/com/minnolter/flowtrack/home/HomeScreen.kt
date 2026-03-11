@@ -233,7 +233,7 @@ fun KeyboardScreen(
                 Text(
                     text = buildAnnotatedString {
                         withStyle(style = SpanStyle(fontSize = displayFontSize * 0.6f)) { append("₹ ") }
-                        append(if (input.isEmpty()) "0" else input)
+                        append(input.ifEmpty { "0" })
                     },
                     style = MaterialTheme.typography.displayLarge.copy(
                         fontWeight = FontWeight.Bold,
@@ -313,7 +313,7 @@ fun KeyboardScreen(
                                             if (!isNavigating && input.isNotEmpty()) {
                                                 isNavigating = true
                                                 haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-                                                navController.navigate("expenseTypeSelector")
+                                                navController.navigate("expenseTypeSelector/$input")
                                             }
                                         }
                                     )

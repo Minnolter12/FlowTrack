@@ -38,5 +38,8 @@ class ExpenseRepository(
     suspend fun getItemById(id: Int): ExpenseItemEntity? {
         return dao.getExpenseItemById(id)
     }
-}
 
+    suspend fun updateCategoryIcon(categoryName: String, newIcon: String) {
+        dao.updateCategoryIcon(categoryName, newIcon)
+    }
+}

@@ -1,4 +1,4 @@
-package com.minnolter.flowtrack
+package com.minnolter.flowtrack.app
 
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -41,14 +41,13 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.minnolter.flowtrack.home.ExpenseTypeSelector
 import com.minnolter.flowtrack.home.HomeScreenViewModel
-import com.minnolter.flowtrack.app.AppViewModel
 import com.minnolter.flowtrack.home.HomeScreen
 import com.minnolter.flowtrack.home.KeyboardScreen
 import com.minnolter.flowtrack.settings.SettingsScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FinanceApp(appViewModel: AppViewModel) {
+fun FlowTrack(appViewModel: AppViewModel) {
 
     val homeScreenViewModel: HomeScreenViewModel = viewModel()
     val navController = rememberNavController()
@@ -56,7 +55,7 @@ fun FinanceApp(appViewModel: AppViewModel) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    val topBarLocations = listOf(
+    val bottomBarLocations = listOf(
         "homeScreen",
         "settingsScreen"
     )
@@ -102,16 +101,19 @@ fun FinanceApp(appViewModel: AppViewModel) {
                         appViewModel = appViewModel
                     )
                 }
-                composable("expenseTypeSelector") {
+                composable("expenseTypeSelector/{amount}") { backStackEntry ->
+                    val amount = backStackEntry.arguments?.getString("amount")?.toIntOrNull() ?: 0
                     ExpenseTypeSelector(
                         navController = navController,
-                        viewModel = appViewModel
+                        viewModel = appViewModel,
+                        amount = amount,
+                        getIconByName = appViewModel::getIconByName,
                     )
                 }
             }
 
             // Overlay the Floating Navigation Bar
-            if (currentRoute in topBarLocations) {
+            if (currentRoute in bottomBarLocations) {
                 FloatingNavigationBar(
                     navController = navController,
                     modifier = Modifier.align(Alignment.BottomCenter)

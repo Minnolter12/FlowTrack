@@ -43,4 +43,8 @@ interface ExpenseDao {
 
     @Query("SELECT DISTINCT category FROM expenseItems")
     fun getCategories(): Flow<List<String>>
+
+    @Query("UPDATE expenseItems SET icon = :newIcon WHERE category = :categoryName")
+    suspend fun updateCategoryIcon(categoryName: String, newIcon: String)
+
 }

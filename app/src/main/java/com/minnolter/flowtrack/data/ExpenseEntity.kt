@@ -1,5 +1,7 @@
 package com.minnolter.flowtrack.data
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -21,5 +23,6 @@ data class ExpenseItemEntity(
     val id: Int = 0,
     val title: String,
     val category: String,
-    val timestamp: Long = System.currentTimeMillis()
+    val timestamp: Long = System.currentTimeMillis(),
+    val icon: String
 )

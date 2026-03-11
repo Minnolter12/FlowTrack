@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.financeapp"
+    namespace = "com.minnolter.flowtrack"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.financeapp"
+        applicationId = "com.minnolter.flowtrack"
         minSdk = 29
         targetSdk = 36
         versionCode = 1
@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.foundation.layout)
+    implementation(libs.androidx.ui)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
